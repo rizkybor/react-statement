@@ -1,19 +1,26 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Typography from "@mui/material/Typography";
 
-const Typographys = ({ data, variant }) => {
-  let text;
-  if (variant === "h5") {
-    text = data;
-  } else if (variant === "body2") {
-    text = data;
-  }
+const Typographys = ({
+  children,
+  component,
+  variant,
+  marginTop,
+  fontWeight,
+  color,
+}) => {
   return (
-    <div>
-      <Typography variant={variant} component="div">
-        {text}
+    <Fragment>
+      <Typography
+        variant={variant}
+        component={component}
+        marginTop={marginTop}
+        fontWeight={fontWeight}
+        color={color}
+      >
+        {children}
       </Typography>
-    </div>
+    </Fragment>
   );
 };
 

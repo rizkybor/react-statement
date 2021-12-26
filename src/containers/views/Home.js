@@ -296,7 +296,7 @@ export default class Home extends Component {
       <Grid container spacing={4}>
         {articles.map((el, index) => (
           <CardArticles
-            clickLove={addLove}
+            addsLove={addLove}
             idCard={el.id}
             ads={el.ads}
             title={el.title}
