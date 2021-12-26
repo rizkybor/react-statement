@@ -8,6 +8,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 
 export default function ButtonAppBar() {
+  const Login = () => {
+    return <Login />;
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }} marginBottom={5}>
       <AppBar position="static">
@@ -24,8 +28,12 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Ordent Article
           </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Register</Button>
+          <Button href="/login" color="inherit">
+            Login
+          </Button>
+          <Button href="/register" color="inherit">
+            Register
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>
