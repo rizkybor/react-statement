@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Grid from "@mui/material/Grid";
 import CardArticles from "../../components/CardArticles";
+import Container from "@mui/material/Container";
 
 const dataArticle = [
   {
@@ -293,21 +294,23 @@ export default class Home extends Component {
       state: { articles },
     } = this;
     return (
-      <Grid container spacing={4}>
-        {articles.map((el, index) => (
-          <CardArticles
-            addsLove={addLove}
-            idCard={el.id}
-            ads={el.ads}
-            title={el.title}
-            cover={el.cover}
-            summary={el.summary}
-            bookmarked={el.bookmarked}
-            likes={el.likes}
-            key={`list-${index}`}
-          ></CardArticles>
-        ))}
-      </Grid>
+      <Container maxWidth="lg">
+        <Grid container spacing={4}>
+          {articles.map((el, index) => (
+            <CardArticles
+              addsLove={addLove}
+              idCard={el.id}
+              ads={el.ads}
+              title={el.title}
+              cover={el.cover}
+              summary={el.summary}
+              bookmarked={el.bookmarked}
+              likes={el.likes}
+              key={`list-${index}`}
+            ></CardArticles>
+          ))}
+        </Grid>
+      </Container>
     );
   }
 }

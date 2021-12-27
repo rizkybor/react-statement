@@ -1,19 +1,17 @@
 import React, { Fragment } from "react";
-
-import Home from "../views/Home";
+import News from "../views/News";
 import Appbar from "../../components/Appbar";
 import BottomNavigation from "../../components/BottomNavigation";
-import DetailsCard from "../views/DetailCards";
-
 import { Routes, Route } from "react-router-dom";
+import DetailsNews from "../views/DetailNews";
 
-export default function Template() {
+export default function newsindex() {
   return (
     <Fragment>
       <Appbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path=":id" element={<DetailsCard />} />
+        <Route path="/" element={<News />} />
+        <Route path=":id" element={<DetailsNews />} />
       </Routes>
       <BottomNavigation />
     </Fragment>

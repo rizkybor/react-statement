@@ -6,16 +6,19 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typographys from "../components/Typographys";
 
+import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Buttons from "../components/Buttons";
 import ShareIcon from "@mui/icons-material/Share";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalOfferOutlinedIcon from "@mui/icons-material/LocalOfferOutlined";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import { useNavigate } from "react-router-dom";
 
 const CardArticles = (props) => {
   const { idCard, ads, title, cover, summary, bookmarked, likes, addsLove } =
     props;
+  let navigate = useNavigate();
 
   let cardStyle = {
     width: "30vw",
@@ -24,6 +27,21 @@ const CardArticles = (props) => {
 
   let cardBody = {
     height: "16vw",
+  };
+
+  let getIdProduct = (props) => {
+    const { idCard, ads, title, cover, summary, bookmarked, likes } = props;
+
+    navigate(`/home/${idCard}`, {
+      state: {
+        adsArticle: ads,
+        titleArticle: title,
+        coverArticle: cover,
+        summaryArticle: summary,
+        bookmarkedArticle: bookmarked,
+        likesArticle: likes,
+      },
+    });
   };
 
   return (
@@ -42,6 +60,13 @@ const CardArticles = (props) => {
           <Typographys variant="body2" component="div">
             {summary}
           </Typographys>
+          <Button
+            onClick={() => {
+              getIdProduct(props);
+            }}
+          >
+            Show Detail
+          </Button>
         </CardContent>
 
         <Grid container>

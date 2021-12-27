@@ -33,16 +33,15 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignUp(props) {
-  const { changeIsLoggedIn } = props;
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get("email"),
-  //     password: data.get("password"),
-  //   });
-  // };
+export default function SignUp() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get("email"),
+      password: data.get("password"),
+    });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -65,7 +64,7 @@ export default function SignUp(props) {
           <Box
             component="form"
             noValidate
-            onSubmit={changeIsLoggedIn}
+            onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>

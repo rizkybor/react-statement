@@ -35,20 +35,17 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn(props) {
+  const { isLoggedIn } = props;
   let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // window.open("/").preventDefault();
-
-    // eslint-disable-next-line no-console
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
-    // <useNavigate to="/" />;
-
+    // this.setState({ isLoggedIn: true });
     navigate("/");
   };
 
@@ -102,7 +99,6 @@ export default function SignIn() {
             />
             <Button
               type="submit"
-              onClick={() => handleSubmit}
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}

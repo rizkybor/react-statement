@@ -1,35 +1,44 @@
 import React, { Component } from "react";
-import Template from "../template/index";
-import { Routes, Route } from "react-router-dom";
+import HomeIndex from "../template/index";
+import NewsIndex from "../template/newsindex";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../views/Login";
 import Register from "../views/Register";
+import ErrorPage from "../views/ErrorPage";
+import RequireAuth from "../../components/RequireAuth";
 
 export default class App extends Component {
-  state = {
-    isLoggedIn: false,
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-    this.setState({ isLoggedIn: true });
-  };
-
   render() {
-    const { handleSubmit, state: isLoggedIn } = this;
     return (
       <div className="App">
         <Routes>
-          <Route path="/" element={<Template />} />
-          <Route path="/login" element={<Login />} />
           <Route
-            path="/register"
-            element={<Register changeIsLoggedIn={handleSubmit} />}
+            path="/"
+            element={
+              <RequireAuth>
+                <Navigate to="/home" />
+              </RequireAuth>
+            }
           />
+          <Route
+            path="/home/*"
+            element={
+              <RequireAuth>
+                <HomeIndex />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/news/*"
+            element={
+              <RequireAuth>
+                <NewsIndex />
+              </RequireAuth>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     );
