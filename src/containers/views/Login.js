@@ -35,18 +35,20 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn(props) {
-  const { isLoggedIn } = props;
+export default function SignIn() {
   let navigate = useNavigate();
   const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-    // this.setState({ isLoggedIn: true });
-    navigate("/");
+    if (event) {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      let datas = {
+        email: data.get("email"),
+        password: data.get("password"),
+      };
+
+      localStorage.setItem("access_token", { datas });
+      navigate("/");
+    }
   };
 
   return (

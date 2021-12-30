@@ -8,10 +8,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 
 export default function ButtonAppBar() {
-  const Login = () => {
-    return <Login />;
-  };
-
   return (
     <Box sx={{ flexGrow: 1 }} marginBottom={5}>
       <AppBar position="static">
@@ -34,11 +30,12 @@ export default function ButtonAppBar() {
           <Button href="/news" color="inherit">
             News
           </Button>
-          <Button href="/login" color="inherit">
-            Login
-          </Button>
-          <Button href="/register" color="inherit">
-            Register
+          <Button
+            onClick={() => localStorage.clear()}
+            href="/login"
+            color="inherit"
+          >
+            Logout
           </Button>
         </Toolbar>
       </AppBar>

@@ -11,21 +11,13 @@ import CardMedia from "@mui/material/CardMedia";
 import { useNavigate } from "react-router-dom";
 
 export default function CardNews(props) {
-  const { title, url, publishedAt } = props;
+  const { title, url } = props;
   let navigate = useNavigate();
 
   let getNewsId = (props) => {
-    const { id, title, description, url, publishedAt } = props;
+    const { id } = props;
 
-    navigate(`/news/${id}`, {
-      state: {
-        idNews: id,
-        titleNews: title,
-        descriptionNews: description,
-        urlNews: url,
-        publishedAtNews: publishedAt,
-      },
-    });
+    navigate(`/news/${id}`);
   };
   return (
     <Grid>
