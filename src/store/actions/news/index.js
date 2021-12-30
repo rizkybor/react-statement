@@ -34,7 +34,6 @@ export const setDataDetailNews = (id) => (dispatch) => {
   fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
     .then((response) => response.json())
     .then((json) => {
-      console.log(json, "masuk json redux");
       let url = { url: "http://placeimg.com/600/400/nightlife" };
       let result = {
         ...json,

@@ -10,11 +10,9 @@ export default function News() {
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
 
-  const home = useSelector((state) => state.home);
-
   useEffect(() => {
     dispatch(getDataNews());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container maxWidth="lg">
