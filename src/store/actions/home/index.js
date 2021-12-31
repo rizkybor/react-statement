@@ -7,7 +7,7 @@ import {
 
 export const setLoadingHome = () => (dispatch) => {
   let data = true;
-  dispatch({ type: GET_DATA_HOME_LOADING, payload: data });
+  dispatch({ type: GET_DATA_HOME_LOADING, payload: dispatch });
 };
 
 export const setErrorHome = () => (dispatch) => {
@@ -16,8 +16,17 @@ export const setErrorHome = () => (dispatch) => {
 };
 
 export const getDataHome = () => (dispatch) => {
-  let data = { title: "halo" };
-  dispatch({ type: GET_DATA_HOME, payload: data });
+  dispatch(setLoadingHome(true));
+  fetch(`https://jsonplaceholder.typicode.com/posts/`)
+    .then((response) => response.json())
+    .then((json) => {
+      let result = json.map((el) => {
+        el["url"] = "http://placeimg.com/600/400/nightlife";
+        return el;
+      });
+      dispatch({ type: GET_DATA_HOME, payload: result });
+      dispatch(setLoadingHome(false));
+    });
 };
 
 export const setDataDetailHome = () => (dispatch) => {

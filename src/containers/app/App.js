@@ -1,6 +1,5 @@
 import React, { useState, Component, useEffect } from "react";
-import HomeIndex from "../template/index";
-import NewsIndex from "../template/newsindex";
+import Home from "../template/index";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../views/Login";
 import Register from "../views/Register";
@@ -14,26 +13,10 @@ export default class App extends Component {
       <div className="App">
         <Routes>
           <Route
-            path="/"
+            path="/*"
             element={
               <RequireAuth>
-                <Navigate to="/home" />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/home/*"
-            element={
-              <RequireAuth>
-                <HomeIndex />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/news/*"
-            element={
-              <RequireAuth>
-                <NewsIndex />
+                <Home />
               </RequireAuth>
             }
           />

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Grid from "@mui/material/Grid";
 import CardArticles from "../../components/CardArticles";
 import Container from "@mui/material/Container";
+import { connect } from "react-redux";
 
 const dataArticle = [
   {
@@ -255,7 +256,7 @@ const dataArticle = [
   },
 ];
 
-export default class Home extends Component {
+class Home extends Component {
   state = {
     articles: [],
   };
@@ -292,7 +293,9 @@ export default class Home extends Component {
     const {
       addLove,
       state: { articles },
+      props: { home, news },
     } = this;
+    console.log(home, "<<<<< PROPS DI hOME");
     return (
       <Container maxWidth="lg">
         <Grid container spacing={4}>
@@ -314,3 +317,10 @@ export default class Home extends Component {
     );
   }
 }
+
+const mapState = (state) => ({
+  home: state.home,
+  news: state.news,
+});
+
+export default connect(mapState, null)(Home);
