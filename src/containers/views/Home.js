@@ -3,6 +3,7 @@ import Grid from "@mui/material/Grid";
 import CardArticles from "../../components/CardArticles";
 import Container from "@mui/material/Container";
 import { connect } from "react-redux";
+import { getDataHome } from "../../store/actions/home";
 
 const dataArticle = [
   {
@@ -257,27 +258,29 @@ const dataArticle = [
 ];
 
 class Home extends Component {
-  state = {
-    articles: [],
-  };
+  // state = {
+  //   articles: [],
+  // };
 
   componentDidMount() {
-    this.newArticles(dataArticle);
+    const { getHome } = this.props;
+    getHome();
+    // this.newArticles(dataArticle);
   }
 
-  newArticles = (value) => {
-    let result = value.map((el, index) => {
-      el["id"] = index;
-      el["ads"] = this.checkAds(index);
-      return el;
-    });
-    this.setState({ articles: result });
-  };
+  // newArticles = (value) => {
+  //   let result = value.map((el, index) => {
+  //     el["id"] = index;
+  //     el["ads"] = this.checkAds(index);
+  //     return el;
+  //   });
+  //   this.setState({ articles: result });
+  // };
 
-  checkAds = (value) => {
-    for (var i = 2; i < value; i++) if (value % i === 0) return false;
-    return value > 1;
-  };
+  // checkAds = (value) => {
+  //   for (var i = 2; i < value; i++) if (value % i === 0) return false;
+  //   return value > 1;
+  // };
 
   addLove = (idCard) => {
     let addLoves = this.state.articles.map((el) => {
@@ -292,23 +295,24 @@ class Home extends Component {
   render() {
     const {
       addLove,
-      state: { articles },
+      // state: { articles },
       props: { home, news },
     } = this;
-    console.log(home, "<<<<< PROPS DI hOME");
+
+    console.log(home.dataHome, "<<<<< data state Home yang di looping");
     return (
       <Container maxWidth="lg">
         <Grid container spacing={4}>
-          {articles.map((el, index) => (
+          {home.dataHome.map((el, index) => (
             <CardArticles
               addsLove={addLove}
               idCard={el.id}
-              ads={el.ads}
+              // ads={el.ads}
               title={el.title}
-              cover={el.cover}
-              summary={el.summary}
-              bookmarked={el.bookmarked}
-              likes={el.likes}
+              cover={el.url}
+              summary={el.body}
+              // bookmarked={el.bookmarked}
+              // likes={el.likes}
               key={`list-${index}`}
             ></CardArticles>
           ))}
@@ -318,9 +322,17 @@ class Home extends Component {
   }
 }
 
+//ngambil data
 const mapState = (state) => ({
   home: state.home,
   news: state.news,
 });
 
-export default connect(mapState, null)(Home);
+//ngambil function
+const mapDispatch = (dispatch) => {
+  return {
+    getHome: () => dispatch(getDataHome()),
+  };
+};
+
+export default connect(mapState, mapDispatch)(Home);
