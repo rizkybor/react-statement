@@ -16,7 +16,9 @@ import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import { useNavigate } from "react-router-dom";
 
 const CardArticles = (props) => {
-  const { idCard, title, cover, summary, bookmarked, addsLove } = props;
+  const { idCard, likes, ads, title, cover, summary, bookmarked, addsLove } =
+    props;
+
   let navigate = useNavigate();
 
   let cardStyle = {
@@ -31,14 +33,14 @@ const CardArticles = (props) => {
   let getIdProduct = (props) => {
     const { idCard, title, cover, summary, bookmarked } = props;
 
-    navigate(`/home/${idCard}`, {
+    navigate(`/${idCard}`, {
       state: {
-        // adsArticle: ads,
+        adsArticle: ads,
         titleArticle: title,
         coverArticle: cover,
         summaryArticle: summary,
         bookmarkedArticle: bookmarked,
-        // likesArticle: likes,
+        likesArticle: likes,
       },
     });
   };
@@ -70,14 +72,14 @@ const CardArticles = (props) => {
 
         <Grid container>
           <Grid container textAlign="left" paddingLeft={2} item xs={4}>
-            {/* <Typographys
+            <Typographys
               marginTop={2}
               variant="h7"
               fontWeight="bold"
               color="#3DB2FF"
             >
               {ads && idCard >= 3 && "Sponsored Ad"}
-            </Typographys> */}
+            </Typographys>
           </Grid>
 
           <Grid
@@ -90,14 +92,14 @@ const CardArticles = (props) => {
             xs={8}
           >
             <CardActions>
-              {/* <p> {likes} </p> */}
-              {/* <Buttons
+              <p> {likes} </p>
+              <Buttons
                 type="icon"
                 onClick={() => addsLove(idCard)}
                 ariaLabel="add-to-favorite"
               >
                 <FavoriteBorderIcon />
-              </Buttons> */}
+              </Buttons>
               <Buttons
                 type="icon"
                 bookmark={bookmarked}

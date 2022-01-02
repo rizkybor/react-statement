@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 export default function ButtonAppBar() {
   let navigate = useNavigate();
   const changePage = (root) => {
-    console.log(root, "<<<<<");
     if (root === "/login") {
       localStorage.clear();
     }
@@ -32,7 +31,7 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Ordent Article
+            React Article
           </Typography>
           <Button onClick={() => changePage("/")} color="inherit">
             Home

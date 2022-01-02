@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useRef } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,6 +12,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+import { signUp } from "../../firebase";
+// import { useDispatch } from "react-redux";
+// import { registerSuccess } from "../../store/actions/signup";
 
 function Copyright(props) {
   return (
@@ -34,13 +38,19 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const datas = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+    console.log(datas.email);
+
+    signUp(datas.email, datas.password);
   };
 
   return (
@@ -68,7 +78,7 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              {/* <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
@@ -88,9 +98,10 @@ export default function SignUp() {
                   name="lastName"
                   autoComplete="family-name"
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <TextField
+                  ref={emailRef}
                   required
                   fullWidth
                   id="email"
@@ -101,6 +112,7 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  ref={passwordRef}
                   required
                   fullWidth
                   name="password"

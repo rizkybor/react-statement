@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import GoogleButton from "react-google-button";
 
 import { useNavigate } from "react-router-dom";
 
@@ -107,13 +108,29 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs></Grid>
-              <Grid item>
-                <Link href="/register" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
+            <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              sx={{ mb: 4 }}
+            >
+              <GoogleButton
+                size="small"
+                onClick={() => {
+                  console.log("Google button clicked");
+                }}
+              />
+            </Grid>
+            <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Link href="/register" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
             </Grid>
           </Box>
         </Box>

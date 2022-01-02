@@ -5,9 +5,9 @@ import {
   GET_DATA_NEWS_ERRORMESSAGE,
 } from "./types";
 
-export const setLoadingNews = (state) => (dispatch) => {
+export const setLoadingNews = (data) => (dispatch) => {
   let data = true;
-  dispatch({ type: GET_DATA_NEWS_LOADING, payload: state });
+  dispatch({ type: GET_DATA_NEWS_LOADING, payload: data });
 };
 
 export const setErrorNews = () => (dispatch) => {

@@ -7,7 +7,7 @@ import {
 
 export const setLoadingHome = () => (dispatch) => {
   let data = true;
-  dispatch({ type: GET_DATA_HOME_LOADING, payload: dispatch });
+  dispatch({ type: GET_DATA_HOME_LOADING, payload: data });
 };
 
 export const setErrorHome = () => (dispatch) => {
@@ -22,6 +22,8 @@ export const getDataHome = () => (dispatch) => {
     .then((json) => {
       let result = json.map((el) => {
         el["url"] = "http://placeimg.com/600/400/nightlife";
+        el["ads"] = "ads ya";
+        el["likes"] = 30;
         return el;
       });
       dispatch({ type: GET_DATA_HOME, payload: result });

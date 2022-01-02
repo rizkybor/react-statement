@@ -19,8 +19,10 @@ export default class App extends Component {
               </RequireAuth>
             }
           />
+
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
