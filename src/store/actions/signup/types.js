@@ -1,3 +1,3 @@
-export const REGISTER_START = "signup/REGISTER_START";
-export const REGISTER_SUCCESS = "signup/REGISTER_SUCCESS";
-export const REGISTER_FAIL = "signup/REGISTER_SUCCESS";
+export const SET_SIGNUP = "signup/SET_SIGNUP";
+export const SET_SIGNUP_LOADING = "signup/SET_SIGNUP_LOADING";
+export const SET_SIGNUP_ERRORMESSAGE = "signup/SIGNUP_ERRORMESSAGE";

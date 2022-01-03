@@ -1,7 +1,7 @@
 import {
-  REGISTER_START,
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
+  SET_SIGNUP,
+  SET_SIGNUP_LOADING,
+  SET_SIGNUP_ERRORMESSAGE,
 } from "../../actions/signup/types";
 
 const initialState = {
@@ -12,17 +12,17 @@ const initialState = {
 
 export default function newUser(state = initialState, action) {
   switch (action.type) {
-    case REGISTER_START:
+    case SET_SIGNUP_LOADING:
       return {
         ...state,
         loading: action.payload,
       };
-    case REGISTER_SUCCESS:
+    case SET_SIGNUP:
       return {
         ...state,
-        loading: action.payload,
+        currentUser: action.payload,
       };
-    case REGISTER_FAIL:
+    case SET_SIGNUP_ERRORMESSAGE:
       return {
         ...state,
         errorMessage: action.payload,

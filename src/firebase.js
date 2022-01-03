@@ -1,9 +1,6 @@
-import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBq3BI0Cg-DLGYJbRCqnqo6K2yZpPTqM90",
@@ -15,14 +12,9 @@ const firebaseConfig = {
   measurementId: "G-V0MSSRW3TW",
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
+firebase.initializeApp(firebaseConfig);
 
-export function signUp(email, password) {
-  return createUserWithEmailAndPassword(auth, email, password);
-}
+const firebaseDB = firebase.firestore();
+const firebaseAuth = firebase.auth();
 
-export function signIn(email, password) {
-  return signInWithEmailAndPassword(auth, email, password);
-}
+export { firebaseAuth, firebaseDB };

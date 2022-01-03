@@ -1,33 +1,46 @@
-import { REGISTER_START, REGISTER_SUCCESS, REGISTER_FAIL } from "./types";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  SET_SIGNUP,
+  SET_SIGNUP_LOADING,
+  SET_SIGNUP_ERRORMESSAGE,
+} from "./types";
 
-export const registerStart = () => (dispatch) => {
-  let data = true;
-  dispatch({ type: REGISTER_START, payload: data });
+import { firebaseAuth } from "../../../firebase";
+
+export const signUpLoading = (state) => (dispatch) => {
+  dispatch({ type: SET_SIGNUP_LOADING, payload: state });
 };
 
-export const registerSuccess = (user, password) => (dispatch) => {
-  const auth = getAuth();
-  console.log(auth, "<<<<");
-  //   createUserWithEmailAndPassword(auth, user, password)
-  //     .then((userCredential) => {
-  //       // Signed in
-  //       const user = userCredential.user;
-  //       console.log(user);
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       console.log(`${errorCode} : >> ${errorMessage}`);
-  //       // ..
-  //     });
+export const signUpUser = (state, navigate) => async (dispatch) => {
+  dispatch(signUpLoading(true));
+  firebaseAuth
+    .createUserWithEmailAndPassword(state.email, state.password)
+    .then(
+      (data) => {
+        data.user.getIdToken(true).then((data) => {
+          let user = {
+            ...state,
+            token: data,
+          };
+          dispatch({ type: SET_SIGNUP, payload: user });
 
-  //     console.log(user, password, "register success reducer");
-
-  //   dispatch({ type: REGISTER_SUCCESS, payload: user });
+          dispatch(signUpLoading(false));
+          navigate("/login");
+        });
+      },
+      (err) => {
+        return Promise.reject(err);
+      }
+    )
+    .catch((err) => {
+      dispatch(signUpLoading(false));
+      if (err.code === "auth/email-already-in-use") {
+        dispatch(signUpError("Email already in use"));
+      } else {
+        dispatch(signUpError("Wrong Credential"));
+      }
+    });
 };
 
-export const registerFail = (error) => (dispatch) => {
-  let data = true;
-  dispatch({ type: REGISTER_FAIL, payload: error });
+export const signUpError = (error) => (dispatch) => {
+  dispatch({ type: SET_SIGNUP_ERRORMESSAGE, payload: error });
 };

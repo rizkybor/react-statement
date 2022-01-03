@@ -5,7 +5,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -14,8 +13,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import GoogleButton from "react-google-button";
 
-import { useNavigate } from "react-router-dom";
-import { signIn } from "../../firebase";
+import { Link } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -26,10 +24,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Rizky Ajie Kurniawan
-      </Link>{" "}
-      {new Date().getFullYear()}
+      Rizky Ajie Kurniawan {new Date().getFullYear()}
       {"."}
     </Typography>
   );
@@ -38,7 +33,6 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  let navigate = useNavigate();
   const handleSubmit = (event) => {
     if (event) {
       event.preventDefault();
@@ -47,13 +41,7 @@ export default function SignIn() {
         email: data.get("email"),
         password: data.get("password"),
       };
-      signIn(datas.email, datas.password);
-      if (signIn) {
-        localStorage.setItem("access_token", { datas });
-        navigate("/");
-      } else {
-        console.log("error woyyyy bor");
-      }
+      console.log(datas);
     }
   };
 
@@ -133,7 +121,7 @@ export default function SignIn() {
               justifyContent="center"
               alignItems="center"
             >
-              <Link href="/register" variant="body2">
+              <Link to="/register" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

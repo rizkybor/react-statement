@@ -6,5 +6,5 @@ import userReducer from "./signup/index";
 export default combineReducers({
   home: homeReducer,
   news: newsReducer,
-  currentUser: userReducer,
+  user: userReducer,
 });
