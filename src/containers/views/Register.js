@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,8 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { signUp } from "../../firebase";
-// import { useDispatch } from "react-redux";
-// import { registerSuccess } from "../../store/actions/signup";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -38,9 +37,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-
+  let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -48,9 +45,8 @@ export default function SignUp() {
       email: data.get("email"),
       password: data.get("password"),
     };
-    console.log(datas.email);
-
     signUp(datas.email, datas.password);
+    navigate("/login");
   };
 
   return (
@@ -101,7 +97,6 @@ export default function SignUp() {
               </Grid> */}
               <Grid item xs={12}>
                 <TextField
-                  ref={emailRef}
                   required
                   fullWidth
                   id="email"
@@ -112,7 +107,6 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  ref={passwordRef}
                   required
                   fullWidth
                   name="password"

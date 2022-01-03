@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import GoogleButton from "react-google-button";
 
 import { useNavigate } from "react-router-dom";
+import { signIn } from "../../firebase";
 
 function Copyright(props) {
   return (
@@ -46,9 +47,13 @@ export default function SignIn() {
         email: data.get("email"),
         password: data.get("password"),
       };
-
-      localStorage.setItem("access_token", { datas });
-      navigate("/");
+      signIn(datas.email, datas.password);
+      if (signIn) {
+        localStorage.setItem("access_token", { datas });
+        navigate("/");
+      } else {
+        console.log("error woyyyy bor");
+      }
     }
   };
 
