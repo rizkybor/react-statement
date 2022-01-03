@@ -1,14 +1,13 @@
 import React from "react";
-import Button from "@mui/material/Button";
+import { useLocation, useNavigate } from "react-router-dom";
+import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import Button from "@mui/material/Button";
+import CardMedia from "@mui/material/CardMedia";
+import ShareIcon from "@mui/icons-material/Share";
+import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import ShareIcon from "@mui/icons-material/Share";
-import { useLocation, useNavigate } from "react-router-dom";
 
 export default function DetailsCard() {
   let navigate = useNavigate();

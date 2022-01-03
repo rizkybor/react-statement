@@ -1,19 +1,15 @@
 import React, { useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import { useNavigate, useParams } from "react-router-dom";
 import { setDataDetailNews } from "../../store/actions/news";
-
 import CircularProgress from "@mui/material/CircularProgress";
-
-import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import CardMedia from "@mui/material/CardMedia";
-
-import { useNavigate, useParams } from "react-router-dom";
 
 export default function CardNews() {
   const dispatch = useDispatch();

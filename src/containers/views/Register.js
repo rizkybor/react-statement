@@ -39,7 +39,6 @@ function Copyright(props) {
   );
 }
 
-// step 1
 const theme = createTheme();
 const initState = {
   email: "",
@@ -48,14 +47,12 @@ const initState = {
 };
 
 export default function SignUp() {
-  // step 2 >> setState value untuk handle validate
   const [signUpValue, setSignUpValue] = useState(initState);
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  // step 4 >> function validate submit
   const validate = (fieldValues = signUpValue) => {
     let temporary = { ...errors };
     if ("email" in fieldValues) {
@@ -82,7 +79,6 @@ export default function SignUp() {
     }
   };
 
-  // step 3 >> assign Value Texfield to initState with useState and setState
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setSignUpValue({ ...signUpValue, [name]: value });
@@ -97,7 +93,6 @@ export default function SignUp() {
     });
   };
 
-  // step 4 >> function validate submit
   const handleSignUp = (e) => {
     e.preventDefault();
     if (validate()) {

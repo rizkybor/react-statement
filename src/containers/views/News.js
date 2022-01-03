@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import Grid from "@mui/material/Grid";
-import CardNews from "../../components/CardNews";
-import Container from "@mui/material/Container";
-import { getDataNews } from "../../store/actions/news";
 import { useSelector, useDispatch } from "react-redux";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 import CircularProgress from "@mui/material/CircularProgress";
+import CardNews from "../../components/CardNews";
+import { getDataNews } from "../../store/actions/news";
 
 export default function News() {
   const dispatch = useDispatch();
